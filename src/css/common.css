@@ -24,8 +24,46 @@ img {
   width: 120px;
   height: 60px;
   color:indigo;
-  background-color: cyan;
   border-radius: 8px;
   text-align: center;
   
+}
+
+.timer{
+  margin-top: 15%;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+}
+
+.field{
+font-style: italic;
+font-size: 50px;
+font-weight: 600;
+color: red;
+}
+
+.timerBody{
+  background-image:url(https://st2.depositphotos.com/3308451/6038/i/600/depositphotos_60388737-stock-photo-christmas-new-year-decoration-background.jpg) ;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.field:not(:last-child){
+  margin-right: 30px;
+}
+#datetime-picker{
+  height: 35px;
+  background-color:rgb(144, 204, 170);
+  border: inherit;
+  border-radius: 3px;
+  text-align: center;
+}
+
+.timerBtn{
+  height: 35px;
+   border-radius: 3px;
+   background-color:rgb(144, 204, 170);
+   border: inherit;
+   text-align: center;
 }
