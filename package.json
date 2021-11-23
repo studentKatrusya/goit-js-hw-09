@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "flatpickr": "^4.6.9",
+    "notiflix": "^3.2.2",
     "sweetalert2": "^11.2.0"
   }
 }
