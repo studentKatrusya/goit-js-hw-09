@@ -13,6 +13,8 @@ const hoursSpan = document.querySelector('[data-hours]');
 const minutesSpan = document.querySelector('[data-minutes]');
 const secondsSpan = document.querySelector('[data-seconds]');
 
+ let timerId = null;
+
  const options =  {
   enableTime: true,
   time_24hr: true,
@@ -26,7 +28,7 @@ const secondsSpan = document.querySelector('[data-seconds]');
     //  console.log(selectedDates[0].getTime());
 options.deltaTime = options.endDate - options.defaultDate;
   if (options.endDate < options.defaultDate) {
-
+    // clearInterval(timerId);
     Notiflix.Notify.failure("Please choose a date in the future");
     timerBtnEl.disabled = true;
       
@@ -40,12 +42,16 @@ options.deltaTime = options.endDate - options.defaultDate;
   onTimerStart() {
   
     setInterval(() => {
-     
+     timerBtnEl.disabled = true;
     options.deltaTime = options.endDate - Date.now();
       const time = convertMs(options.deltaTime);
- 
-    updateClockFace(time);
-
+ timerBtnEl.removeEventListener('click', options.onTimerStart);
+      updateClockFace(time);
+      if (options.deltaTime <= 0) {
+        clearInterval(timerId);
+        clearTimer();
+      }
+    
   }, 1000 )
 }
 }
@@ -62,6 +68,14 @@ function updateClockFace(evt) {
   
 }
 
+
+function clearTimer() {
+  daysSpan.textContent = '00';
+  hoursSpan.textContent = '00';
+  minutesSpan.textContent = '00';
+  secondsSpan.textContent = '00';
+
+}
 
 // вешаем слушателя событий
 
@@ -96,10 +110,19 @@ function convertMs(ms) {
 
 
 // ============== 1 ====================
-// // Описан в документации
+// Описан в документации
 // import flatpickr from "flatpickr";
 // // Дополнительный импорт стилей
 // import "flatpickr/dist/flatpickr.min.css";
+
+// const inputEl= document.querySelector('#datetime-picker');
+// const timerBtnEl = document.querySelector('[data-start]');
+// const daysSpan = document.querySelector('[data-days]');
+// const hoursSpan = document.querySelector('[data-hours]');
+// const minutesSpan = document.querySelector('[data-minutes]');
+// const secondsSpan = document.querySelector('[data-seconds]');
+
+// let timerId = null;
 
 
 //  flatpickr('#datetime-picker',  {
@@ -109,18 +132,18 @@ function convertMs(ms) {
 //   minuteIncrement: 1,
 //    onClose(selectedDates) {
    
-//     console.log(selectedDates[0].getTime());
+//     // console.log(selectedDates[0].getTime());
    
 //   },
 // }
 // )
 
-// вешаем слушателя событий
+// // вешаем слушателя событий
 
 // inputEl.addEventListener('change', onValidationDate);
 // timerBtnEl.addEventListener('click', onStartTimer);
 
-// проверяем , чтобы выбранная дата не была меньше текущей
+// // проверяем , чтобы выбранная дата не была меньше текущей
 // function onValidationDate() {
 //      const currentData = Date.now();
 
@@ -130,15 +153,17 @@ function convertMs(ms) {
 //     timerBtnEl.disabled = false;
 //   }
 //      else {
-//    Notiflix.Notify.failure("Please choose a date in the future");
+//    window.alert("Please choose a date in the future");
 //       timerBtnEl.disabled = true;
 //     clearInterval(timerId);
 //   }
   
 // }
-// запуск таймера
+// // запуск таймера
 // function onStartTimer() {
 
+
+// timerBtnEl.disabled = true;
 //   timerId = setInterval(() => {
 //     const currentData = Date.now();
 
@@ -150,7 +175,15 @@ function convertMs(ms) {
 //       hoursSpan.textContent = time.hours;
 //       minutesSpan.textContent = time.minutes;
 //       secondsSpan.textContent = time.seconds;
-    
+//     if(deltaTime <= 0){
+//     clearInterval(timerId);
+//   daysSpan.textContent = '00';
+//   hoursSpan.textContent = '00';
+//   minutesSpan.textContent = '00';
+//   secondsSpan.textContent = '00';
+
+
+//     }
     
 //   }, 1000);
  
