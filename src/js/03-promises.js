@@ -31,19 +31,21 @@ function onSubmitcreatePromises(event) {
   const amount = Number(refs.amountRef.value);
 
   for (let i = 1; i <= amount; i += 1) {
+  if(i!== 1){
     delay += step;
+    };
 
     createPromise(i, delay)
-  .then(({ position, delay }) => {
+      .then(({ position, delay }) => {
   
-          Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
+        Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
      
-  })
+      })
   .catch(({ position, delay }) => {
        
           Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
         
   });
   }
-}
+};
 
