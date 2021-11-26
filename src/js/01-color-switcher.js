@@ -27,7 +27,7 @@ function onClickBtnStart() {
         
         btnStart.disabled = true;
         btnStop.disabled = false;
-        btnStart.removeEventListener("click", onClickBtnStart);
+        // btnStart.removeEventListener("click", onClickBtnStart);
     }
 };
 // ф-ция onClicBtnStop  при клике на кноку удаляет setInterval
@@ -38,6 +38,6 @@ function onClickBtnStop() {
     if (btnStop) {
         btnStart.disabled = false;
         btnStop.disabled = true;
-        btnStop.removeEventListener("click", onClickBtnStop);
+        // btnStop.removeEventListener("click", onClickBtnStop);
     }
 };
